@@ -27,18 +27,21 @@ public class AjaxController {
 		return userService.getAll();
 	}
 	
-	@RequestMapping(value = "/addUser", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public ResponseEntity<Void> addUser(@RequestBody UserDTO user){
-//		user.setId(102);
 		userService.saveOrUpdate(user);
-		
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/users/{userId}", method = RequestMethod.PUT, produces = "application/json; charset=UTF-8")
+	public ResponseEntity<Void> updateUser(@RequestBody UserDTO user){
+		userService.saveOrUpdate(user);
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/users/{userId}", method = RequestMethod.DELETE, produces = "application/json; charset=UTF-8")
 	
 	public ResponseEntity<Void> delete(@RequestBody UserDTO user){
-		
 		userService.delete(user);
 		
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
