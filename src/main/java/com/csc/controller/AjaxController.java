@@ -28,9 +28,13 @@ public class AjaxController {
 
 	@Autowired
 	UserService userService;
+	@Autowired
 	PersonService personService;
+	@Autowired
 	TreatmentService treatmentService;
+	@Autowired
 	MedicineService medicineService;
+	@Autowired
 	AllergyService allergyService;
 	
 	//READ
@@ -39,7 +43,7 @@ public class AjaxController {
 		return userService.getAll();
 	}
 	@RequestMapping(value = "/persons", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
-	public ArrayList<PersonDTO> showAllPatient(){
+	public ArrayList<PersonDTO> showAllPerson(){
 		return personService.getAll();
 	}
 	@RequestMapping(value = "/treatments", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
@@ -67,7 +71,7 @@ public class AjaxController {
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	@RequestMapping(value = "/treatments", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public ResponseEntity<Void> addPatient(@RequestBody TreatmentDTO treatment){
+	public ResponseEntity<Void> addTreatment(@RequestBody TreatmentDTO treatment){
 		treatmentService.saveOrUpdate(treatment);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
