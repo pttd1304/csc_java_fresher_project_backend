@@ -12,7 +12,7 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd ">
-        
+
 	<tx:annotation-driven />
 	<mvc:annotation-driven
 		content-negotiation-manager="contentNegotiationManager" />
@@ -26,15 +26,15 @@
 	<context:component-scan base-package="com.csc.controller" />
 	<context:component-scan base-package="com.csc.dao" />
 	<context:component-scan base-package="com.csc.service" />
-<!-- 	<bean -->
-<!-- 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
-<!-- 		<property name="prefix"> -->
-<!-- 			<value>/WEB-INF/jsp/</value> -->
-<!-- 		</property> -->
-<!-- 		<property name="suffix"> -->
-<!-- 			<value>.jsp</value> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<!-- <bean -->
+	<!-- class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
+	<!-- <property name="prefix"> -->
+	<!-- <value>/WEB-INF/jsp/</value> -->
+	<!-- </property> -->
+	<!-- <property name="suffix"> -->
+	<!-- <value>.jsp</value> -->
+	<!-- </property> -->
+	<!-- </bean> -->
 
 
 	<!-- Database Configuration -->

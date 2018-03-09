@@ -36,82 +36,80 @@ public class IndexController {
 	MedicineService medicineService;
 	@Autowired
 	AllergyService allergyService;
-	
+
 	@RequestMapping("/create4test")
-	public void index(){
+	public void index() {
 		for (int i = 0; i < 20; i++) {
 			UserDTO u = new UserDTO();
-			u.setUsername("username"+i);
-			u.setPassword("password"+i);
+			u.setUsername("username" + i);
+			u.setPassword("password" + i);
 			u.setRole(1);
 			userService.saveOrUpdate(u);
 		}
 		for (int i = 20; i < 40; i++) {
 			UserDTO u = new UserDTO();
-			u.setUsername("username"+i);
-			u.setPassword("password"+i);
+			u.setUsername("username" + i);
+			u.setPassword("password" + i);
 			u.setRole(2);
 			userService.saveOrUpdate(u);
 		}
 		for (int i = 40; i < 45; i++) {
 			UserDTO u = new UserDTO();
-			u.setUsername("username"+i);
-			u.setPassword("password"+i);
+			u.setUsername("username" + i);
+			u.setPassword("password" + i);
 			u.setRole(3);
 			userService.saveOrUpdate(u);
 		}
-		//Person
+		// Person
 		for (int i = 0; i < 50; i++) {
 			PersonDTO u = new PersonDTO();
-			u.setFullname("name"+i);
+			u.setFullname("name" + i);
 			u.setAddress("TPHCM");
-			u.setCmnd("12345678"+i);
+			u.setCmnd("12345678" + i);
 			u.setDob("1/1/2000");
 			u.setJob(" ");
 			u.setSex("male");
 			u.setRole(0);
 			personService.saveOrUpdate(u);
 		}
-		//Treatment
+		// Treatment
 		for (int i = 0; i < 50; i++) {
 			TreatmentDTO u = new TreatmentDTO();
-			u.setTreatmendId("a"+i);
-			u.setMedicalResult("b"+i);
-			u.setPrescription("c"+i);
-			u.setDoctorId("123"+i);
+			u.setTreatmendId("a" + i);
+			u.setMedicalResult("b" + i);
+			u.setPrescription("c" + i);
+			u.setDoctorId("123" + i);
 			u.setCreationDate("2018");
 			treatmentService.saveOrUpdate(u);
 		}
-		//Medicine
+		// Medicine
 		for (int i = 0; i < 50; i++) {
 			MedicineDTO u = new MedicineDTO();
-			u.setMedicineId("med"+i);
-			u.setName("medicine"+i);
+			u.setMedicineId("med" + i);
+			u.setName("medicine" + i);
 			u.setNsx("1/1/2000");
 			u.setExp("2018");
 			u.setCompany("DXC");
 			u.setQuantity(i + 10);
 			medicineService.saveOrUpdate(u);
 		}
-		//Allergy
+		// Allergy
 		for (int i = 0; i < 20; i++) {
 			AllergyDTO u = new AllergyDTO();
-			u.setMedicineId("med"+i);
-			u.setPersonCMND("12345678"+i);
+			u.setMedicineId("med" + i);
+			u.setPersonCMND("12345678" + i);
 			allergyService.saveOrUpdate(u);
 		}
 	}
-	
+
 	@RequestMapping("/")
-	public String aaaaa(){
+	public String aaaaa() {
 		return "Welcome";
 	}
-	
 
 	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
-	public  ResponseEntity<ArrayList<UserDTO>> showAllUser(){
+	public ResponseEntity<ArrayList<UserDTO>> showAllUser() {
 		return new ResponseEntity<ArrayList<UserDTO>>(userService.getAll(), HttpStatus.OK);
 	}
 
-	
 }
