@@ -1,11 +1,18 @@
 
 package com.csc.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity(name="persons")
 public class PersonDTO {
@@ -20,14 +27,13 @@ public class PersonDTO {
 	private String dob;
 	@Column(name = "sex")
 	private String sex;
+	
+	@OneToMany(mappedBy = "persons", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private Set<TreatmentDTO> treatments = new HashSet<TreatmentDTO>();
+//	
 	@Column(name = "cmnd")
 	private String cmnd;
-	@Column(name = "role")
-	private int role;
-	@Column(name = "job")
-	private String job;
-	@Column(name = "resultId")
-	private String resultId;
+
 	public int getId() {
 		return id;
 	}
@@ -55,34 +61,29 @@ public class PersonDTO {
 	public String getSex() {
 		return sex;
 	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
+	
 	public String getCmnd() {
 		return cmnd;
 	}
 	public void setCmnd(String cmnd) {
 		this.cmnd = cmnd;
 	}
-	public int getRole() {
-		return role;
+
+	public Set<TreatmentDTO> getTreatments() {
+		return treatments;
 	}
-	public void setRole(int role) {
-		this.role = role;
+	public void setTreatments(Set<TreatmentDTO> treatments) {
+		this.treatments = treatments;
 	}
-	public String getJob() {
-		return job;
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
-	public void setJob(String job) {
-		this.job = job;
-	}
-	public String getResultId() {
-		return resultId;
-	}
-	public void setResultId(String resultId) {
-		this.resultId = resultId;
-	}
-	
-	
+//	public String getCmnd() {
+//		return cmnd;
+//	}
+//	public void setCmnd(String cmnd) {
+//		this.cmnd = cmnd;
+//	}
+
 	
 }

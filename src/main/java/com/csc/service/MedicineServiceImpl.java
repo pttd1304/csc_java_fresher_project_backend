@@ -24,8 +24,11 @@ public class MedicineServiceImpl implements MedicineService {
 		this.u = u;
 	}
 
-	public void saveOrUpdate(MedicineDTO u) {
-		getU().saveOrUpdate(u);
+	public void save(MedicineDTO u) {
+		getU().save(u);
+	}
+	public void update(MedicineDTO u) {
+		getU().update(u);
 	}
 
 	@Override

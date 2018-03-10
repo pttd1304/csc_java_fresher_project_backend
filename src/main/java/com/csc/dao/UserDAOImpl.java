@@ -25,10 +25,14 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	
-	public void saveOrUpdate(UserDTO u) {
-		getSessionFactory().getCurrentSession().saveOrUpdate(u);
+	public void save(UserDTO u) {
+		getSessionFactory().getCurrentSession().save(u);
 	}
 
+	public void update(UserDTO u) {
+		getSessionFactory().getCurrentSession().update(u);
+	}
+	
 	public ArrayList<UserDTO> getAll() {
 		return (ArrayList<UserDTO>) getSessionFactory().getCurrentSession().createQuery("from users").list();
 	}

@@ -24,8 +24,11 @@ public class PersonServiceImpl implements PersonService {
 		this.u = u;
 	}
 
-	public void saveOrUpdate(PersonDTO u) {
-		getU().saveOrUpdate(u);
+	public void save(PersonDTO u) {
+		getU().save(u);
+	}
+	public void update(PersonDTO u) {
+		getU().update(u);
 	}
 
 	@Override
@@ -37,6 +40,15 @@ public class PersonServiceImpl implements PersonService {
 	public void delete(PersonDTO u) {
 		getU().delete(u);
 		
+	}
+
+	@Override
+	/**
+	 * @author abc
+	 * @return ID
+	 */
+	public PersonDTO getById(int id) {
+		return getU().getById(id);
 	}
 
 	

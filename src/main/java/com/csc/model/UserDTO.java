@@ -21,6 +21,15 @@ public class UserDTO {
 	@Column(name = "role")
 	private int role;
 	
+	@Column(name = "cmnd")
+	private String cmnd;
+	
+	public String getCmnd() {
+		return cmnd;
+	}
+	public void setCmnd(String cmnd) {
+		this.cmnd = cmnd;
+	}
 	public int getId() {
 		return id;
 	}

@@ -25,9 +25,14 @@ public class AllergyDAOImpl implements AllergyDAO {
 	}
 
 	
-	public void saveOrUpdate(AllergyDTO u) {
-		getSessionFactory().getCurrentSession().saveOrUpdate(u);
+	public void save(AllergyDTO u) {
+		getSessionFactory().getCurrentSession().save(u);
 	}
+	
+	public void update(AllergyDTO u) {
+		getSessionFactory().getCurrentSession().update(u);
+	}
+
 
 	public ArrayList<AllergyDTO> getAll() {
 		return (ArrayList<AllergyDTO>) getSessionFactory().getCurrentSession().createQuery("from allergies").list();

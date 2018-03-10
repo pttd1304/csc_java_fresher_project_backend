@@ -25,8 +25,11 @@ public class MedicineDAOImpl implements MedicineDAO {
 	}
 
 	
-	public void saveOrUpdate(MedicineDTO u) {
-		getSessionFactory().getCurrentSession().saveOrUpdate(u);
+	public void save(MedicineDTO u) {
+		getSessionFactory().getCurrentSession().save(u);
+	}
+	public void update(MedicineDTO u) {
+		getSessionFactory().getCurrentSession().update(u);
 	}
 
 	public ArrayList<MedicineDTO> getAll() {

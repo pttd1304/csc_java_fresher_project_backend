@@ -1,45 +1,54 @@
 
 package com.csc.model;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
 @Entity(name="treatments")
 public class TreatmentDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "treatmentId")
-	private String treatmendId;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "personId")
+	private PersonDTO persons;
+	
 	@Column(name = "prescription")
 	private String prescription;
+	
+//	@Lob @Basic(fetch = FetchType.LAZY)
 	@Column(name = "medicalResult")
 	private String medicalResult;
+	
 	@Column(name = "doctorId")
 	private String doctorId;
-	@Column(name = "creationDate")
-	private String creationDate;
+	
+	@Column(name = "diseases")
+	private String diseases;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getTreatmendId() {
-		return treatmendId;
-	}
-	public void setTreatmendId(String treatmendId) {
-		this.treatmendId = treatmendId;
-	}
+
 	public String getPrescription() {
 		return prescription;
 	}
 	public void setPrescription(String prescription) {
 		this.prescription = prescription;
 	}
+
 	public String getMedicalResult() {
 		return medicalResult;
 	}
@@ -52,12 +61,14 @@ public class TreatmentDTO {
 	public void setDoctorId(String doctorId) {
 		this.doctorId = doctorId;
 	}
-	public String getCreationDate() {
-		return creationDate;
+
+	public String getDiseases() {
+		return diseases;
 	}
-	public void setCreationDate(String creationDate) {
-		this.creationDate = creationDate;
+	public void setDiseases(String diseases) {
+		this.diseases = diseases;
 	}
+
 
 	
 

@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.csc.model.PersonDTO;
+import com.csc.model.LogDTO;
 
 @Repository
 @Transactional
-public class PersonDAOImpl implements PersonDAO {
+public class LogDAOImpl implements LogDAO {
 
 	private SessionFactory sessionFactory;
 
@@ -25,26 +25,20 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 	
-	public void save(PersonDTO u) {
+	public void save(LogDTO u) {
 		getSessionFactory().getCurrentSession().save(u);
 	}
-	public void update(PersonDTO u) {
+	public void update(LogDTO u) {
 		getSessionFactory().getCurrentSession().update(u);
 	}
 
-	public ArrayList<PersonDTO> getAll() {
-		return (ArrayList<PersonDTO>) getSessionFactory().getCurrentSession().createQuery("from persons").list();
-	}
-	
-	@Override
-	public void delete(PersonDTO u) {
-		getSessionFactory().getCurrentSession().delete(u);
+	public ArrayList<LogDTO> getAll() {
+		return (ArrayList<LogDTO>) getSessionFactory().getCurrentSession().createQuery("from log").list();
 	}
 
 	@Override
-	public PersonDTO getById(int id) {
-		String hql = "from persons where id = :id";
-		return (PersonDTO) getSessionFactory().getCurrentSession().createQuery(hql).setParameter("id", id).uniqueResult();
+	public void delete(LogDTO u) {
+		getSessionFactory().getCurrentSession().delete(u);
 	}
 
 
