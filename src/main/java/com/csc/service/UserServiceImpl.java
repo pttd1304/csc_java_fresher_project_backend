@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.csc.dao.UserDAO;
+import com.csc.model.PersonDTO;
 import com.csc.model.UserDTO;
 
 
@@ -24,8 +25,11 @@ public class UserServiceImpl implements UserService {
 		this.u = u;
 	}
 
-	public void saveOrUpdate(UserDTO u) {
-		getU().saveOrUpdate(u);
+	public void save(UserDTO u) {
+		getU().save(u);
+	}
+	public void update(UserDTO u) {
+		getU().update(u);
 	}
 
 	@Override
@@ -38,6 +42,7 @@ public class UserServiceImpl implements UserService {
 		getU().delete(u);
 		
 	}
+
 
 	
 }

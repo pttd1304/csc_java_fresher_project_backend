@@ -1,6 +1,8 @@
 package com.csc.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.csc.model.AllergyDTO;
+import com.csc.model.LogDTO;
 import com.csc.model.MedicineDTO;
 import com.csc.model.PersonDTO;
 import com.csc.model.TreatmentDTO;
 import com.csc.model.UserDTO;
 import com.csc.service.AllergyService;
+import com.csc.service.LogService;
 import com.csc.service.MedicineService;
 import com.csc.service.PersonService;
 import com.csc.service.TreatmentService;
@@ -36,80 +40,109 @@ public class IndexController {
 	MedicineService medicineService;
 	@Autowired
 	AllergyService allergyService;
-
+	@Autowired
+	LogService logService;
+	
 	@RequestMapping("/create4test")
-	public void index() {
-		for (int i = 0; i < 20; i++) {
+	public void index(){
+		//CREATE FAKE USERS
+		for (int i = 0; i < 5; i++) {
 			UserDTO u = new UserDTO();
-			u.setUsername("username" + i);
-			u.setPassword("password" + i);
+			u.setUsername("username"+i);
+			u.setPassword("password"+i);
+			u.setCmnd("123"+i);
 			u.setRole(1);
-			userService.saveOrUpdate(u);
+			userService.save(u);
 		}
-		for (int i = 20; i < 40; i++) {
+		for (int i = 5; i < 10; i++) {
 			UserDTO u = new UserDTO();
-			u.setUsername("username" + i);
-			u.setPassword("password" + i);
+			u.setUsername("username"+i);
+			u.setPassword("password"+i);
+			u.setCmnd("123"+i);
 			u.setRole(2);
-			userService.saveOrUpdate(u);
+			userService.save(u);
 		}
-		for (int i = 40; i < 45; i++) {
+		for (int i = 10; i < 15; i++) {
 			UserDTO u = new UserDTO();
-			u.setUsername("username" + i);
-			u.setPassword("password" + i);
+			u.setUsername("username"+i);
+			u.setPassword("password"+i);
+			u.setCmnd("123"+i);
 			u.setRole(3);
-			userService.saveOrUpdate(u);
+			userService.save(u);
 		}
-		// Person
-		for (int i = 0; i < 50; i++) {
-			PersonDTO u = new PersonDTO();
-			u.setFullname("name" + i);
-			u.setAddress("TPHCM");
-			u.setCmnd("12345678" + i);
-			u.setDob("1/1/2000");
-			u.setJob(" ");
-			u.setSex("male");
-			u.setRole(0);
-			personService.saveOrUpdate(u);
-		}
-		// Treatment
-		for (int i = 0; i < 50; i++) {
+		
+		//CREATE FAKE TREATMENTS
+		for (int i = 0; i < 10; i++) {
+			
 			TreatmentDTO u = new TreatmentDTO();
-			u.setTreatmendId("a" + i);
-			u.setMedicalResult("b" + i);
-			u.setPrescription("c" + i);
-			u.setDoctorId("123" + i);
-			u.setCreationDate("2018");
-			treatmentService.saveOrUpdate(u);
+			u.setDiseases("sida");
+			u.setDoctorId("123"+i);
+			u.setPrescription("abc xyz");
+			u.setMedicalResult("Project nhóm 1");
+
 		}
-		// Medicine
-		for (int i = 0; i < 50; i++) {
+		//CREATE FAKE PERSON
+		for (int i = 0; i < 10; i++) {
+			PersonDTO u = new PersonDTO();
+			u.setFullname("name"+i);
+			u.setAddress("TPHCM");
+			u.setCmnd("1234"+i);		
+			u.setDob("1/1/2000");
+			u.setSex("male");	
+			
+			TreatmentDTO u123 = new TreatmentDTO();
+			u123.setDiseases("sida");
+			u123.setDoctorId("123"+i);
+			u123.setPrescription("abc xyz");
+			u123.setMedicalResult("Project nhóm 1");
+
+			Set set = new HashSet<TreatmentDTO>();
+			set.add(u123);
+			u.setTreatments(set);
+			personService.save(u);
+		}
+
+		//CREATE FAKE MEDICINE
+		for (int i = 0; i < 20; i++) {
 			MedicineDTO u = new MedicineDTO();
-			u.setMedicineId("med" + i);
-			u.setName("medicine" + i);
+			u.setMedicineId("med"+i);
+			u.setName("medicine"+i);
 			u.setNsx("1/1/2000");
 			u.setExp("2018");
 			u.setCompany("DXC");
 			u.setQuantity(i + 10);
-			medicineService.saveOrUpdate(u);
+			medicineService.save(u);
 		}
-		// Allergy
-		for (int i = 0; i < 20; i++) {
+		
+		//CREATE FAKE ALLERGY
+		for (int i = 0; i < 10; i++) {
 			AllergyDTO u = new AllergyDTO();
-			u.setMedicineId("med" + i);
-			u.setPersonCMND("12345678" + i);
-			allergyService.saveOrUpdate(u);
+			u.setMedicineId("med"+i);
+			u.setPersonCMND("1234"+i);
+			allergyService.save(u);
+		}
+		
+		//CREATE FAKE LOG
+		for (int i = 0; i < 3; i++) {
+			LogDTO u = new LogDTO();
+			u.setTimeModified("4:30");
+			u.setDoctorId("doctor"+i);
+			u.setDoctorName("name"+i);
+			u.setChanges("Something.....");
+			logService.save(u);
 		}
 	}
-
+	
 	@RequestMapping("/")
-	public String aaaaa() {
+	public String aaaaa(){
 		return "Welcome";
 	}
+	
 
 	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
-	public ResponseEntity<ArrayList<UserDTO>> showAllUser() {
+	public  ResponseEntity<ArrayList<UserDTO>> showAllUser(){
 		return new ResponseEntity<ArrayList<UserDTO>>(userService.getAll(), HttpStatus.OK);
 	}
 
+	
 }

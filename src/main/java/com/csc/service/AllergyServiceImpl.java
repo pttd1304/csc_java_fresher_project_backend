@@ -24,8 +24,11 @@ public class AllergyServiceImpl implements AllergyService {
 		this.u = u;
 	}
 
-	public void saveOrUpdate(AllergyDTO u) {
-		getU().saveOrUpdate(u);
+	public void save(AllergyDTO u) {
+		getU().save(u);
+	}
+	public void update(AllergyDTO u) {
+		getU().update(u);
 	}
 
 	@Override
