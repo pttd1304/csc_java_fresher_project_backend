@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.ModelAttribute;
+=======
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +49,11 @@ import com.csc.service.PersonService;
 import com.csc.service.TreatmentService;
 
 @RestController
+<<<<<<< HEAD
 @RequestMapping("/")
+=======
+@RequestMapping("/api")
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 public class AjaxController {
 
 	@Autowired
@@ -61,6 +68,7 @@ public class AjaxController {
 	AllergyService allergyService;
 	@Autowired
 	LogService logService;
+<<<<<<< HEAD
 	@Autowired
 	ServletContext context;
 	
@@ -74,6 +82,10 @@ public class AjaxController {
 		}	
 		return -1;
 	}
+=======
+	
+	
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 	/****USER****/
 	//CREATE USER
 	@RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
@@ -121,7 +133,10 @@ public class AjaxController {
 	public ArrayList<PersonDTO> showAllPerson(){
 		return personService.getAll();
 	}
+<<<<<<< HEAD
 	//READ PERSON BY ID
+=======
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 	@RequestMapping(value = "/persons/{personId}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	public PersonDTO showPersonById(@PathVariable int personId){
 		return personService.getById(personId);
@@ -140,6 +155,7 @@ public class AjaxController {
 			personService.update(person);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}	
+<<<<<<< HEAD
 	}
 	//DELETE PERSON
 	@RequestMapping(value = "/persons/{personId}", method = RequestMethod.DELETE, produces = "application/json; charset=UTF-8")	
@@ -173,13 +189,33 @@ public class AjaxController {
 //		
 //	}
 
+=======
+	}
+	//DELETE PERSON
+	@RequestMapping(value = "/persons/{personId}", method = RequestMethod.DELETE, produces = "application/json; charset=UTF-8")	
+	public ResponseEntity<Void> deletePerson(@PathVariable String personId, @RequestBody PersonDTO person){	
+		if(personId == null) {
+			return new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+		} else {
+			personService.delete(person);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}	
+	}
+	
+	
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 	/****TREATMENT****/
 	//CREATE TREATMENT
 	@RequestMapping(value = "/treatments", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public ResponseEntity<Void> addTreatment(@RequestBody TreatmentDTO treatment){
+<<<<<<< HEAD
 			  treatmentService.save(treatment);
 			  return new ResponseEntity<Void>(HttpStatus.CREATED);
 
+=======
+		treatmentService.save(treatment);
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 	}
 	//READ TREATMENT
 	@RequestMapping(value = "/treatments", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
@@ -187,9 +223,15 @@ public class AjaxController {
 		return treatmentService.getAll();
 	}
 	//READ TREATMENT BY ID
+<<<<<<< HEAD
 	@RequestMapping(value = "/treatments/{id}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	public ArrayList<TreatmentDTO> showAllTreatmentById(@PathVariable int id){
 		return treatmentService.getAllById(id);
+=======
+	@RequestMapping(value = "/treatments/{cmnd}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	public ArrayList<TreatmentDTO> showAllTreatmentById(@PathVariable String cmnd){
+		return treatmentService.getAllById(cmnd);
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 	}
 	//UPDATE TREATMENT
 	@RequestMapping(value = "/treatments/{treatmentId}", method = RequestMethod.PUT, produces = "application/json; charset=UTF-8")
@@ -261,11 +303,14 @@ public class AjaxController {
 	public ArrayList<AllergyDTO> showAllAllergy(){
 		return allergyService.getAll();
 	}
+<<<<<<< HEAD
 	//READ ALLERGY BY PERSON ID
 		@RequestMapping(value = "/allergies/{personId}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 		public ArrayList<AllergyDTO> showAllAllergyById(@PathVariable int personId){
 			return allergyService.getAllById(personId);
 		}
+=======
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 	//UPDATE ALLERGY
 	@RequestMapping(value = "/allergies/{allergyId}", method = RequestMethod.PUT, produces = "application/json; charset=UTF-8")
 	public ResponseEntity<Void> updateAllergy(@PathVariable String allergyId, @RequestBody AllergyDTO allergy){

@@ -3,7 +3,10 @@ package com.csc.model;
 public class UserInfo {
 	private String userName;
 	private String password;
+<<<<<<< HEAD
 	private String role;
+=======
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 
 	public UserInfo() {
 
@@ -29,6 +32,7 @@ public class UserInfo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+<<<<<<< HEAD
 
 	public String getRole() {
 		return role;
@@ -38,4 +42,6 @@ public class UserInfo {
 		this.role = role;
 	}
 
+=======
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 }

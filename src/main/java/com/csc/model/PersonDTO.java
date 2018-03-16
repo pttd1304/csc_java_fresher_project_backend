@@ -13,6 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+<<<<<<< HEAD
+=======
+import javax.persistence.OneToOne;
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 
 @Entity(name="persons")
 public class PersonDTO {
@@ -34,6 +38,18 @@ public class PersonDTO {
 //	
 	@Column(name = "cmnd")
 	private String cmnd;
+<<<<<<< HEAD
+=======
+	
+	@OneToMany(mappedBy = "persons", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private Set<TreatmentDTO> treatments = new HashSet<TreatmentDTO>();
+	
+	@OneToMany(mappedBy = "persons", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private Set<AllergyDTO> allergys = new HashSet<AllergyDTO>();
+
+	@OneToOne(cascade = CascadeType.ALL)
+	
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 
 	public int getId() {
 		return id;
@@ -70,6 +86,7 @@ public class PersonDTO {
 		this.cmnd = cmnd;
 	}
 
+<<<<<<< HEAD
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
@@ -81,4 +98,21 @@ public class PersonDTO {
 //	}
 
 	
+=======
+	public Set<TreatmentDTO> getTreatments() {
+		return treatments;
+	}
+	public void setTreatments(Set<TreatmentDTO> treatments) {
+		this.treatments = treatments;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public Set<AllergyDTO> getAllergys() {
+		return allergys;
+	}
+	public void setAllergys(Set<AllergyDTO> allergys) {
+		this.allergys = allergys;
+	}
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 }

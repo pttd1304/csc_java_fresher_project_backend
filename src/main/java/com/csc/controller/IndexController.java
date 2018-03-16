@@ -46,11 +46,16 @@ public class IndexController {
 	@RequestMapping("/create4test")
 	public void index(){
 		//CREATE FAKE USERS
+<<<<<<< HEAD
 		for (int i = 0; i < 15; i++) {
+=======
+		for (int i = 0; i < 5; i++) {
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 			UserDTO u = new UserDTO();
 			u.setUsername("username"+i);
 			u.setPassword("password"+i);
 			u.setCmnd("123"+i);
+<<<<<<< HEAD
 			u.setRole(i%3+1);
 			userService.save(u);
 		}
@@ -67,6 +72,38 @@ public class IndexController {
 			treatmentService.save(u);
 
 		}
+=======
+			u.setRole(1);
+			userService.save(u);
+		}
+		for (int i = 5; i < 10; i++) {
+			UserDTO u = new UserDTO();
+			u.setUsername("username"+i);
+			u.setPassword("password"+i);
+			u.setCmnd("123"+i);
+			u.setRole(2);
+			userService.save(u);
+		}
+		for (int i = 10; i < 15; i++) {
+			UserDTO u = new UserDTO();
+			u.setUsername("username"+i);
+			u.setPassword("password"+i);
+			u.setCmnd("123"+i);
+			u.setRole(3);
+			userService.save(u);
+		}
+		
+		//CREATE FAKE TREATMENTS
+		for (int i = 0; i < 10; i++) {
+			
+			TreatmentDTO u = new TreatmentDTO();
+			u.setDiseases("sida");
+			u.setDoctorId("123"+i);
+			u.setPrescription("abc xyz");
+			u.setMedicalResult("Project nhóm 1");
+
+		}
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 		//CREATE FAKE PERSON
 		for (int i = 0; i < 10; i++) {
 			PersonDTO u = new PersonDTO();
@@ -75,6 +112,19 @@ public class IndexController {
 			u.setCmnd("1234"+i);		
 			u.setDob("1/1/2000");
 			u.setSex("male");	
+<<<<<<< HEAD
+=======
+			
+			TreatmentDTO u123 = new TreatmentDTO();
+			u123.setDiseases("sida");
+			u123.setDoctorId("123"+i);
+			u123.setPrescription("abc xyz");
+			u123.setMedicalResult("Project nhóm 1");
+
+			Set set = new HashSet<TreatmentDTO>();
+			set.add(u123);
+			u.setTreatments(set);
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 			personService.save(u);
 		}
 
@@ -90,10 +140,17 @@ public class IndexController {
 		}
 		
 		//CREATE FAKE ALLERGY
+<<<<<<< HEAD
 		for (int i = 0; i < 5; i++) {
 			AllergyDTO u = new AllergyDTO();
 			u.setMedicine("medicine"+i);
 			u.setPersonId(i);
+=======
+		for (int i = 0; i < 10; i++) {
+			AllergyDTO u = new AllergyDTO();
+			u.setMedicineId("med"+i);
+			u.setPersonCMND("1234"+i);
+>>>>>>> 81fb3a8520c1ec3bae995f7b5b6e5717ce925c83
 			allergyService.save(u);
 		}
 		
