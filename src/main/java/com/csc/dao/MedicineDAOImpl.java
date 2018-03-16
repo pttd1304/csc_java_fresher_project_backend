@@ -40,6 +40,22 @@ public class MedicineDAOImpl implements MedicineDAO {
 	public void delete(MedicineDTO u) {
 		getSessionFactory().getCurrentSession().delete(u);
 	}
-
+	@Override 
+    public MedicineDTO getId(int id)
+    {
+    	return  (MedicineDTO) sessionFactory.getCurrentSession().get(MedicineDTO.class, Integer.valueOf(id));
+    }
+	@Override
+	public boolean add(MedicineDTO u)
+	{
+		try {
+			sessionFactory.getCurrentSession().persist(u);
+			return true;
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+			return false;
+		}
+	}
 
 }

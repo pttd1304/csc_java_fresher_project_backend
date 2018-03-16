@@ -10,4 +10,6 @@ public interface MedicineDAO {
 	public void update(MedicineDTO u);
 	public ArrayList<MedicineDTO> getAll();
 	public void delete(MedicineDTO u);
+	public boolean add(MedicineDTO u);
+	MedicineDTO getId(int id);
 }
