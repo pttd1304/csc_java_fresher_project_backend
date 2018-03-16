@@ -42,9 +42,9 @@ public class TreatmentDAOImpl implements TreatmentDAO {
 	}
 	
 
-	public ArrayList<TreatmentDTO> getAllById(String cmnd){
-		String hql = "from treatments where treatmendId = :cmnd";
-		return (ArrayList<TreatmentDTO>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter("cmnd", cmnd).list();
+	public ArrayList<TreatmentDTO> getAllById(int id){
+		String hql = "from treatments where personId = :id";
+		return (ArrayList<TreatmentDTO>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter("id", id).list();
 	}
 	
 	@Override

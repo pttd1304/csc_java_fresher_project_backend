@@ -10,6 +10,6 @@ public interface TreatmentDAO {
 	public void update(TreatmentDTO u);
 	public void save(TreatmentDTO u);
 	public ArrayList<TreatmentDTO> getAll();
-	public ArrayList<TreatmentDTO> getAllById(String cmnd);
+	public ArrayList<TreatmentDTO> getAllById(int id);
 	public void delete(TreatmentDTO u);
 }

@@ -37,6 +37,11 @@ public class AllergyDAOImpl implements AllergyDAO {
 	public ArrayList<AllergyDTO> getAll() {
 		return (ArrayList<AllergyDTO>) getSessionFactory().getCurrentSession().createQuery("from allergies").list();
 	}
+	
+	public ArrayList<AllergyDTO> getAllById(int id) {
+		String hql = "from allergies where personId = :id";
+		return (ArrayList<AllergyDTO>) getSessionFactory().getCurrentSession().createQuery(hql).setParameter("id", id).list();
+	}
 
 	@Override
 	public void delete(AllergyDTO u) {

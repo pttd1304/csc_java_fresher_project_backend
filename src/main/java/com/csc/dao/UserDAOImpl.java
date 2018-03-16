@@ -36,6 +36,12 @@ public class UserDAOImpl implements UserDAO {
 	public ArrayList<UserDTO> getAll() {
 		return (ArrayList<UserDTO>) getSessionFactory().getCurrentSession().createQuery("from users").list();
 	}
+	
+	public UserDTO checkUser(String uname) {
+		String hql = "from users where username = :uname";
+		return (UserDTO) getSessionFactory().getCurrentSession().createQuery(hql).setParameter("uname", uname).uniqueResult();
+
+	}
 
 	@Override
 	public void delete(UserDTO u) {

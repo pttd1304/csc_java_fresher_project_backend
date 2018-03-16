@@ -1,19 +1,39 @@
 package com.csc.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.multipart.MultipartFile;
 
 import com.csc.model.UserDTO;
 import com.csc.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.istack.internal.logging.Logger;
+
+import antlr.collections.List;
+import javafx.scene.shape.Path;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import com.csc.model.AllergyDTO;
 import com.csc.model.LogDTO;
 import com.csc.model.MedicineDTO;
@@ -26,7 +46,7 @@ import com.csc.service.PersonService;
 import com.csc.service.TreatmentService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 public class AjaxController {
 
 	@Autowired
@@ -41,8 +61,19 @@ public class AjaxController {
 	AllergyService allergyService;
 	@Autowired
 	LogService logService;
+	@Autowired
+	ServletContext context;
 	
-	
+	/****LOG IN****/
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public int logIn(@RequestBody UserDTO user){
+		String uname = user.getUsername();
+		if(userService.checkUser(uname) != null) {
+			UserDTO tmp = userService.checkUser(uname);
+			return tmp.getRole();
+		}	
+		return -1;
+	}
 	/****USER****/
 	//CREATE USER
 	@RequestMapping(value = "/users", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
@@ -90,6 +121,7 @@ public class AjaxController {
 	public ArrayList<PersonDTO> showAllPerson(){
 		return personService.getAll();
 	}
+	//READ PERSON BY ID
 	@RequestMapping(value = "/persons/{personId}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	public PersonDTO showPersonById(@PathVariable int personId){
 		return personService.getById(personId);
@@ -119,14 +151,35 @@ public class AjaxController {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}	
 	}
-	
-	
+	/****UPLOAD IMAGE****/
+//	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+//	@ResponseBody
+//	public Object saveUserDataAndFile(
+//	        @RequestParam(value = "file") MultipartFile file,HttpServletRequest request) {
+//		//String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+//		String rootDirectory = "D:\\testUpload\\";
+//		System.out.println("Root Directory "+rootDirectory);
+//		try {
+//			file.transferTo(new File(rootDirectory  + file.getOriginalFilename()));
+//		} catch (IllegalStateException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		return null;
+//		
+//	}
+
 	/****TREATMENT****/
 	//CREATE TREATMENT
 	@RequestMapping(value = "/treatments", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public ResponseEntity<Void> addTreatment(@RequestBody TreatmentDTO treatment){
-		treatmentService.save(treatment);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
+			  treatmentService.save(treatment);
+			  return new ResponseEntity<Void>(HttpStatus.CREATED);
+
 	}
 	//READ TREATMENT
 	@RequestMapping(value = "/treatments", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
@@ -134,9 +187,9 @@ public class AjaxController {
 		return treatmentService.getAll();
 	}
 	//READ TREATMENT BY ID
-	@RequestMapping(value = "/treatments/{cmnd}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
-	public ArrayList<TreatmentDTO> showAllTreatmentById(@PathVariable String cmnd){
-		return treatmentService.getAllById(cmnd);
+	@RequestMapping(value = "/treatments/{id}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	public ArrayList<TreatmentDTO> showAllTreatmentById(@PathVariable int id){
+		return treatmentService.getAllById(id);
 	}
 	//UPDATE TREATMENT
 	@RequestMapping(value = "/treatments/{treatmentId}", method = RequestMethod.PUT, produces = "application/json; charset=UTF-8")
@@ -208,6 +261,11 @@ public class AjaxController {
 	public ArrayList<AllergyDTO> showAllAllergy(){
 		return allergyService.getAll();
 	}
+	//READ ALLERGY BY PERSON ID
+		@RequestMapping(value = "/allergies/{personId}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+		public ArrayList<AllergyDTO> showAllAllergyById(@PathVariable int personId){
+			return allergyService.getAllById(personId);
+		}
 	//UPDATE ALLERGY
 	@RequestMapping(value = "/allergies/{allergyId}", method = RequestMethod.PUT, produces = "application/json; charset=UTF-8")
 	public ResponseEntity<Void> updateAllergy(@PathVariable String allergyId, @RequestBody AllergyDTO allergy){

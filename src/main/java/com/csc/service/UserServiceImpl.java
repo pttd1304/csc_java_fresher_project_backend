@@ -36,7 +36,10 @@ public class UserServiceImpl implements UserService {
 	public ArrayList<UserDTO> getAll() {
 		return getU().getAll();
 	}
-
+	@Override
+	public UserDTO checkUser(String uname) {
+		return getU().checkUser(uname);
+	}
 	@Override
 	public void delete(UserDTO u) {
 		getU().delete(u);

@@ -12,8 +12,6 @@ public class MedicineDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "medicineId")
-	private String medicineId;
 	@Column(name = "name")
 	private String name;
 	@Column(name = "nsx")
@@ -29,12 +27,6 @@ public class MedicineDTO {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public String getMedicineId() {
-		return medicineId;
-	}
-	public void setMedicineId(String medicineId) {
-		this.medicineId = medicineId;
 	}
 	public String getName() {
 		return name;

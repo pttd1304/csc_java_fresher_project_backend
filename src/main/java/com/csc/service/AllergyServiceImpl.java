@@ -35,6 +35,12 @@ public class AllergyServiceImpl implements AllergyService {
 	public ArrayList<AllergyDTO> getAll() {
 		return getU().getAll();
 	}
+	
+	@Override
+	public ArrayList<AllergyDTO> getAllById(int id) {
+		return getU().getAllById(id);
+	}
+
 
 	@Override
 	public void delete(AllergyDTO u) {

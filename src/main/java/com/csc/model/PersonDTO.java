@@ -27,9 +27,10 @@ public class PersonDTO {
 	private String dob;
 	@Column(name = "sex")
 	private String sex;
+
 	
-	@OneToMany(mappedBy = "persons", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	private Set<TreatmentDTO> treatments = new HashSet<TreatmentDTO>();
+//	@OneToMany(mappedBy = "persons", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+//	private Set<TreatmentDTO> treatments = new HashSet<TreatmentDTO>();
 //	
 	@Column(name = "cmnd")
 	private String cmnd;
@@ -69,12 +70,6 @@ public class PersonDTO {
 		this.cmnd = cmnd;
 	}
 
-	public Set<TreatmentDTO> getTreatments() {
-		return treatments;
-	}
-	public void setTreatments(Set<TreatmentDTO> treatments) {
-		this.treatments = treatments;
-	}
 	public void setSex(String sex) {
 		this.sex = sex;
 	}

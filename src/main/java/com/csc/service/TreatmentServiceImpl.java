@@ -38,8 +38,8 @@ public class TreatmentServiceImpl implements TreatmentService {
 	}
 	
 	@Override
-	public ArrayList<TreatmentDTO> getAllById(String cmnd) {
-		return getU().getAllById(cmnd);
+	public ArrayList<TreatmentDTO> getAllById(int id) {
+		return getU().getAllById(id);
 	}
 
 

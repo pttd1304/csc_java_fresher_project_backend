@@ -12,29 +12,32 @@ public class AllergyDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "personCMND")
-	private String personCMND;
-	@Column(name = "medicineId")
-	private String medicineId;
+	@Column(name = "personId")
+	private int personId;
+	@Column(name = "medicine")
+	private String medicine;
+	
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getPersonCMND() {
-		return personCMND;
+
+
+	public int getPersonId() {
+		return personId;
 	}
-	public void setPersonCMND(String personCMND) {
-		this.personCMND = personCMND;
+	public void setPersonId(int personId) {
+		this.personId = personId;
 	}
-	public String getMedicineId() {
-		return medicineId;
+	public String getMedicine() {
+		return medicine;
 	}
-	public void setMedicineId(String medicineId) {
-		this.medicineId = medicineId;
+	public void setMedicine(String medicine) {
+		this.medicine = medicine;
 	}
 
-	
 
 }

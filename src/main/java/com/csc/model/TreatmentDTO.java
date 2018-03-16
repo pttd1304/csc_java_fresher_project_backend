@@ -12,16 +12,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity(name="treatments")
 public class TreatmentDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "personId")
-	private PersonDTO persons;
+//	@ManyToOne(optional = false)
+//	@JoinColumn(name = "personId")
+//	private PersonDTO persons;
+	@Column(name = "personId")
+	private int personId;
 	
+	public int getPersonId() {
+		return personId;
+	}
+	public void setPersonId(int personId) {
+		this.personId = personId;
+	}
 	@Column(name = "prescription")
 	private String prescription;
 	
@@ -29,11 +39,12 @@ public class TreatmentDTO {
 	@Column(name = "medicalResult")
 	private String medicalResult;
 	
-	@Column(name = "doctorId")
-	private String doctorId;
+	@Column(name = "medicine")
+	private String medicine;
 	
 	@Column(name = "diseases")
 	private String diseases;
+	
 	
 	public int getId() {
 		return id;
@@ -49,19 +60,20 @@ public class TreatmentDTO {
 		this.prescription = prescription;
 	}
 
+
+
 	public String getMedicalResult() {
 		return medicalResult;
 	}
 	public void setMedicalResult(String medicalResult) {
 		this.medicalResult = medicalResult;
 	}
-	public String getDoctorId() {
-		return doctorId;
+	public String getMedicine() {
+		return medicine;
 	}
-	public void setDoctorId(String doctorId) {
-		this.doctorId = doctorId;
+	public void setMedicine(String medicine) {
+		this.medicine = medicine;
 	}
-
 	public String getDiseases() {
 		return diseases;
 	}
